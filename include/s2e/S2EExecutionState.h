@@ -153,6 +153,9 @@ public:
     virtual void addressSpaceSymbolicStatusChange(klee::ObjectState *object, bool becameConcrete);
 
 public:
+  /* VIOLET Change */
+  bool is_vaild;
+
     S2EExecutionState(klee::KFunction *kf);
     ~S2EExecutionState();
 
