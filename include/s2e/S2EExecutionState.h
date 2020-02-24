@@ -154,7 +154,7 @@ public:
 
 public:
   /* VIOLET Change */
-  bool is_vaild;
+  bool is_valid;
 
     S2EExecutionState(klee::KFunction *kf);
     ~S2EExecutionState();

@@ -56,7 +56,7 @@ S2EExecutionState::S2EExecutionState(klee::KFunction *kf)
       m_isStateSwitchForbidden(false), m_deviceState(this), m_asCache(&addressSpace),
       m_registers(&m_active, &m_runningConcrete, this, this), m_memory(), m_lastS2ETb(nullptr),
       m_needFinalizeTBExec(false), m_forkAborted(false), m_nextSymbVarId(0), m_tlb(&m_asCache, &m_registers),
-      m_runningExceptionEmulationCode(false),is_vaild(true) {
+      m_runningExceptionEmulationCode(false),is_valid(true) {
     // XXX: make this a struct, not a pointer...
     m_timersState = new TimersState;
     m_guid = m_stateID;

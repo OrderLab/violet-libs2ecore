@@ -40,6 +40,7 @@ protected:
     klee::ref<klee::Expr> readMemory8(uint64_t address, AddressType addressType = VirtualAddress);
 
 public:
+    bool test = false;
     S2EExecutionStateMemory();
 
     void initialize(klee::AddressSpace *addressSpace, AddressSpaceCache *asCache, const bool *active,
@@ -151,7 +152,7 @@ public:
         }
 
         if (addConstraint) {
-            return write(address, expr);
+            return write(address, expr,addressType);
         }
 
         return true;
