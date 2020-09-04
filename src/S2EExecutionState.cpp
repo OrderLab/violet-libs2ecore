@@ -167,6 +167,21 @@ void S2EExecutionState::disableForking() {
     }
 }
 
+void S2EExecutionState::collectConstraints() {
+    if (forkDisabled && collectEnabled) {
+        return;
+    }
+
+    forkDisabled = true;
+    collectEnabled = true;
+
+    if (PrintForkingStatus) {
+        g_s2e->getInfoStream(this) << "Collect constraint"
+                                   << " at pc = " << (void *) regs()->getPc()
+                                   << " and pagedir = " << hexval(regs()->getPageDir()) << '\n';
+    }
+}
+
 void S2EExecutionState::switchToConcrete() {
     assert(!m_runningConcrete);
 

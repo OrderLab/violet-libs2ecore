@@ -1420,7 +1420,13 @@ S2EExecutor::StatePair S2EExecutor::fork(ExecutionState &current, const klee::re
     bool forkOk = true;
     if (!dyn_cast<klee::ConstantExpr>(condition)) {
         if (currentState->forkDisabled) {
+//          if(currentState->collectEnabled) {
+//            g_s2e->getDebugStream(currentState) << "collect constraints " << hexval(currentState->regs()->getPc()) << "\n";
+            current.constraints.constMap[currentState->regs()->getPc()] = condition;
+//          }
             g_s2e->getDebugStream(currentState) << "fork disabled at " << hexval(currentState->regs()->getPc()) << "\n";
+
+
         }
 
         g_s2e->getCorePlugin()->onStateForkDecide.emit(currentState, &forkOk);
@@ -1435,7 +1441,6 @@ S2EExecutor::StatePair S2EExecutor::fork(ExecutionState &current, const klee::re
     }
 
     res = Executor::fork(current, condition, keepConditionTrueInCurrentState);
-
     currentState->forkDisabled = oldForkStatus;
 
     if (!(res.first && res.second)) {

@@ -289,6 +289,7 @@ public:
 
     void enableForking();
     void disableForking();
+    void collectConstraints();
 
     bool isRunningExceptionEmulationCode() const {
         return m_runningExceptionEmulationCode;
